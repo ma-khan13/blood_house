@@ -1,6 +1,8 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
+const registerHandler = require('./routeHandler/registerHandler')
+
 const cors = require('cors');
 require('dotenv').config();
 
@@ -15,12 +17,12 @@ mongoose.connect('mongodb://localhost/blood-house')
     console.log(`MongoDb connection failed ${err}`);
 })
 
-
+app.use("/register",registerHandler);
 
 app.get('/', (req, res) => {
     const user = {name:"Asif",email:"asif2gmail.com"}
-    const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1d' })
-    res.send(`Jwt token ${token}`)
+    // const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: '1d' })
+    res.send(`Jwt token ${user}`);
 })
 
 
