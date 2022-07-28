@@ -18,15 +18,16 @@ router.post("/", async (req, res) => {
         message: "Your password not match",
     });
     }
-    const palosd = {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        city: user.city,
-        age: user.age,
-        phone:user.phone
-    }
-    const token = jwt.sign(palosd, process.env.JWT_SECRET, { expiresIn: "1d" });
+    const paloyd = {
+      _id: user._id,
+      name: user.name,
+      blood: user.blood,
+      email: user.email,
+      city: user.city,
+      age: user.age,
+      phone: user.phone,
+    };
+    const token = jwt.sign(paloyd, process.env.JWT_SECRET, { expiresIn: "1d" });
     return res.status(200).json({
         message: "User login successfully",
         token: token,
